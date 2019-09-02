@@ -55,10 +55,9 @@ var secretArray = Array.from(secretWord);
 function wordPick() {
     
 
-    for (var i = 0; secretArray[i]; i++) {
+    for (var i = 0; i < secretArray.length; i++) {
         var newDiv = document.createElement('div');
-        newDiv.id = secretArray[i];
-        newDiv.className = 'wordDiv';
+        newDiv.className = (secretArray[i]) + " ltrdiv";
         newDiv.textContent = ("_")
         document.getElementById('wordBlanks').appendChild(newDiv);
         
@@ -69,10 +68,19 @@ wordPick();
 
 document.onkeyup = function(guess) {
     var userGuess = guess.key;
-    console.log(userGuess)
+    console.log(userGuess);
     if (secretWord.includes(userGuess)) {
-        document.getElementById(userGuess).textContent = (userGuess)
+        var x = document.getElementsByClassName(userGuess);
+        for (var i = 0; i < x.length; i++) {
+            x[i].innerHTML = (userGuess);
+        }
+        
     }
+    else {
+        guesses = --guesses;
+        console.log(guesses);
+    }
+
 }
 
 
