@@ -1,0 +1,20 @@
+Set the word
+
+math random function to pick a random number within 
+the length of the words array.
+set as word variable
+
+for loop to:
+take a letter from the word variable
+create a div with an id = (letter) and class = wordLetter
+append div to the #word element on the html
+
+onkeyup set to userGuess var
+
+getelementbyid wordLetter
+if wordLetter id = userGuess
+then innerhtml = userGuess
+
+else
+
+-1 from guesses

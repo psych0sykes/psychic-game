@@ -9,11 +9,17 @@
     <title>SHAPES!</title>
 </head>
 <body>
-    <div class="row" style="height: 300px;">
+    <div class="row">
         
         <div class="col-md-2 yellow"></div>
            <div class="col-md-8 blue">
-        
+               <header class="row red">
+                   SHAPES!
+               </header>
+               <div class="row">
+                    <div class="col-md-6 blue"></div>
+                    <div class="col-md-6 blue"></div>
+               </div>
            </div>
         <div class="col-md-2 yellow"></div>
 
@@ -21,13 +27,55 @@
 </body>
 <script> 
 //src="assets/javascript/game.js"
+
+document.onload()
+
 console.log("JS READY")
 
-var words = ["square","circle","triangle","rectangle","octagon","hexagon","pentagon","polygon"]
+var words = [
+    "square",
+    "circle",
+    "triangle",
+    "rectangle",
+    "octagon",
+    "hexagon",
+    "pentagon",
+    "polygon"]
 
 console.log(words)
 
 var guesses = 12
+
+document.onkeyup = function(guess) {
+    var userGuess = guess.key;
+    console.log(userGuess)
+}
+
+function wordPick() {
+    var secretWord = words[Math.round((Math.random() * (words.length)))];
+    console.log(secretWord);
+    var secretArray = Array.from(secretWord);
+    console.log(secretArray)
+
+}
+
+wordPick()
+
+
+function addWord(){
+
+    for (var i = 0; secretArray[i]; i++) {
+        var newDiv = document.createElement('div');
+        newDiv.id = secretArray[i];
+        newDiv.className = 'wordDiv';
+        newDiv.textContent("_ ")
+        toAdd.appendChild(newDiv);
+}
+document.getElementById('wordBlanks').appendChild(toAdd);
+}
+
+
+
 
 </script>
 </html>

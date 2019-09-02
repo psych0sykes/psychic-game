@@ -1,5 +1,9 @@
 header {
     height: 300px;
+    font-size: 100px;
+    color: white;
+    align-content: center;
+    justify-content: center;
 }
 .red {
     background-color: red;
