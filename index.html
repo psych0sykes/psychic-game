@@ -17,7 +17,11 @@
                    SHAPES!
                </header>
                <div class="row">
-                    <div class="col-md-6 blue"></div>
+                    <div class="col-md-6 blue">
+                        <div id="wordBlanks">
+
+                        </div>
+                    </div>
                     <div class="col-md-6 blue"></div>
                </div>
            </div>
@@ -27,8 +31,6 @@
 </body>
 <script> 
 //src="assets/javascript/game.js"
-
-document.onload()
 
 console.log("JS READY")
 
@@ -57,22 +59,18 @@ function wordPick() {
     var secretArray = Array.from(secretWord);
     console.log(secretArray)
 
-}
-
-wordPick()
-
-
-function addWord(){
-
     for (var i = 0; secretArray[i]; i++) {
         var newDiv = document.createElement('div');
         newDiv.id = secretArray[i];
         newDiv.className = 'wordDiv';
-        newDiv.textContent("_ ")
-        toAdd.appendChild(newDiv);
+        newDiv.textContent = ("_ ")
+        document.getElementById('wordBlanks').appendChild(newDiv);
+        
+    }
 }
-document.getElementById('wordBlanks').appendChild(toAdd);
-}
+
+wordPick();
+
 
 
 
