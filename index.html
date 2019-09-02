@@ -11,21 +11,21 @@
 <body>
     <div class="row">
         
-        <div class="col-md-2 yellow"></div>
+        <div class="col-md-2"></div>
            <div class="col-md-8 blue">
                <header class="row red">
                    SHAPES!
                </header>
                <div class="row">
                     <div class="col-md-6 blue">
-                        <div id="wordBlanks">
-
-                        </div>
+                        <div id="wrongput"></div>
                     </div>
-                    <div class="col-md-6 blue"></div>
+                    <div class="col-md-6 yellow">
+                        <div id="wordBlanks" class="row"></div>
+                    </div>
                </div>
            </div>
-        <div class="col-md-2 yellow"></div>
+        <div class="col-md-2"></div>
 
     </div>
 </body>
@@ -42,45 +42,100 @@ var words = [
     "octagon",
     "hexagon",
     "pentagon",
-    "polygon"]
+    "polygon",
+    "obtuse",
+    "acute",
+    "angle",
+    "corner",
+    "concave",
+    "convex",
+    "sides",]
 
 console.log(words)
 
-var guesses = 12
-var secretWord = words[Math.round((Math.random() * (words.length)))];
-    console.log(secretWord);
-var secretArray = Array.from(secretWord);
-    console.log(secretArray)
+var guesses
+var secretWord
+var secretArray
+var win
+var rowNumber = 0
 
-function wordPick() {
+function randomWord () {
+    secretWord = words[Math.round((Math.random() * (words.length)))];
+    console.log(secretWord);
+}
+
+function makeArray () {
+    secretArray = Array.from(secretWord);
+    console.log(secretArray);
+
+}
+
+function wordDivs() {
+    var wordRow = document.createElement("div")
+    wordRow.id = (rowNumber)
+    wordRow.className = "row"
+    console.log("Row Number: " + rowNumber)
+    document.getElementById("wordBlanks").appendChild(wordRow);
     
 
     for (var i = 0; i < secretArray.length; i++) {
-        var newDiv = document.createElement('div');
+        var newDiv = document.createElement("div");
         newDiv.className = (secretArray[i]) + " ltrdiv";
         newDiv.textContent = ("_")
-        document.getElementById('wordBlanks').appendChild(newDiv);
+        document.getElementById(rowNumber).appendChild(newDiv);
         
     }
+    guesses = 12;
+    win = 0;
+    ++rowNumber;
+    console.log("Next row: " + rowNumber)
 }
 
-wordPick();
+randomWord ();
+makeArray ();
+wordDivs();
+
+var b = document.getElementsByClassName("ltrdiv")
+console.log(b)
 
 document.onkeyup = function(guess) {
     var userGuess = guess.key;
-    console.log(userGuess);
+    //console.log(userGuess);
     if (secretWord.includes(userGuess)) {
         var x = document.getElementsByClassName(userGuess);
         for (var i = 0; i < x.length; i++) {
             x[i].innerHTML = (userGuess);
+            win = ++win;
+            console.log(win)
+            console.log(secretArray.length)
+        }
+        if (win === secretArray.length) {
+            alert("SHAPES!")
+            var b = document.getElementsByClassName("ltrdiv");
+        for (var i = 0; i < b.length; i++) {
+            b[i].className = "done";
+        }
+            randomWord ();
+            makeArray ();
+            wordDivs();
+
         }
         
     }
     else {
+        if (document.getElementById(userGuess + "_guessed")) {
+            console.log("GUESSED!")
+        }
+        else{
         guesses = --guesses;
         console.log(guesses);
+        var newDiv = document.createElement("div");
+        newDiv.id = (userGuess + "_guessed");
+        newDiv.className = ("guessed");
+        newDiv.textContent = (userGuess);
+        document.getElementById("wrongput").appendChild(newDiv);
+        }
     }
-
 }
 
 

@@ -14,3 +14,15 @@ header {
 .blue {
     background-color: blue;
 }
+.wordBlanks {
+    position: flex;
+    flex-direction: row;
+}
+.ltrdiv {
+    font-size: 32px;
+    padding: 10px;
+}
+.done {
+    font-size: 32px;
+    padding: 10px;
+}
