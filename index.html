@@ -47,29 +47,34 @@ var words = [
 console.log(words)
 
 var guesses = 12
-
-document.onkeyup = function(guess) {
-    var userGuess = guess.key;
-    console.log(userGuess)
-}
+var secretWord = words[Math.round((Math.random() * (words.length)))];
+    console.log(secretWord);
+var secretArray = Array.from(secretWord);
+    console.log(secretArray)
 
 function wordPick() {
-    var secretWord = words[Math.round((Math.random() * (words.length)))];
-    console.log(secretWord);
-    var secretArray = Array.from(secretWord);
-    console.log(secretArray)
+    
 
     for (var i = 0; secretArray[i]; i++) {
         var newDiv = document.createElement('div');
         newDiv.id = secretArray[i];
         newDiv.className = 'wordDiv';
-        newDiv.textContent = ("_ ")
+        newDiv.textContent = ("_")
         document.getElementById('wordBlanks').appendChild(newDiv);
         
     }
 }
 
 wordPick();
+
+document.onkeyup = function(guess) {
+    var userGuess = guess.key;
+    console.log(userGuess)
+    if (secretWord.includes(userGuess)) {
+        document.getElementById(userGuess).textContent = (userGuess)
+    }
+}
+
 
 
 
