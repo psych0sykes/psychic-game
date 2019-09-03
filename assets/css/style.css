@@ -14,15 +14,32 @@ header {
 .blue {
     background-color: blue;
 }
-.wordBlanks {
-    position: flex;
+#wordBlanks {
+    display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
+    justify-content: center;
+}
+#wrongput {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
 }
 .ltrdiv {
     font-size: 32px;
     padding: 10px;
+    flex-wrap: wrap;
 }
 .done {
     font-size: 32px;
     padding: 10px;
+    flex-wrap: wrap;
+}
+.guessed {
+    width: 25%;
+    font-size: 24px;
+    padding: 10px;
+    flex-wrap: wrap;
+    
 }

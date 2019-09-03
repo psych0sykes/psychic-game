@@ -52,7 +52,7 @@ var words = [
     "sides",]
 
 console.log(words)
-
+var userGuess
 var guesses
 var secretWord
 var secretArray
@@ -71,25 +71,26 @@ function makeArray () {
 }
 
 function wordDivs() {
-    var wordRow = document.createElement("div")
-    wordRow.id = (rowNumber)
-    wordRow.className = "row"
-    console.log("Row Number: " + rowNumber)
+    var wordRow = document.createElement("div");
+    wordRow.id = (rowNumber);
+    wordRow.className = "row";
+    console.log("Row Number: " + rowNumber);
     document.getElementById("wordBlanks").appendChild(wordRow);
     
 
     for (var i = 0; i < secretArray.length; i++) {
         var newDiv = document.createElement("div");
         newDiv.className = (secretArray[i]) + " ltrdiv";
-        newDiv.textContent = ("_")
+        newDiv.textContent = ("_");
         document.getElementById(rowNumber).appendChild(newDiv);
         
     }
     guesses = 12;
     win = 0;
     ++rowNumber;
-    console.log("Next row: " + rowNumber)
+    console.log("Next row: " + rowNumber);
 }
+
 
 randomWord ();
 makeArray ();
@@ -105,23 +106,20 @@ document.onkeyup = function(guess) {
         var x = document.getElementsByClassName(userGuess);
         for (var i = 0; i < x.length; i++) {
             x[i].innerHTML = (userGuess);
+            x[i].className = ("done");
             win = ++win;
-            console.log(win)
-            console.log(secretArray.length)
+            console.log(win);
+            console.log("Secret Array: " + secretArray.length)    
         }
-        if (win === secretArray.length) {
+    }
+    function winner () {
+    if (win === secretArray.length) {
             alert("SHAPES!")
-            var b = document.getElementsByClassName("ltrdiv");
-        for (var i = 0; i < b.length; i++) {
-            b[i].className = "done";
-        }
             randomWord ();
             makeArray ();
             wordDivs();
-
-        }
-        
     }
+    
     else {
         if (document.getElementById(userGuess + "_guessed")) {
             console.log("GUESSED!")
@@ -136,6 +134,11 @@ document.onkeyup = function(guess) {
         document.getElementById("wrongput").appendChild(newDiv);
         }
     }
+}
+
+    winner ()
+
+    
 }
 
 
