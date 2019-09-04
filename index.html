@@ -11,7 +11,9 @@
 <body>
     <div class="row">
         
-        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <div id="guessLeft"></div>
+        </div>
            <div class="col-md-8 blue">
                <header class="row red">
                    SHAPES!
@@ -52,12 +54,15 @@ var words = [
     "sides",]
 
 console.log(words)
-var userGuess
-var guesses
-var secretWord
-var secretArray
-var win
-var rowNumber = 0
+var userGuess;
+var guesses;
+var secretWord;
+var secretArray;
+var win;
+var rowNumber = 0;
+var score = 0;
+var wrongput = document.getElementById("wrongput");
+var rightput = document.getElementById("wordBlanks");
 
 function randomWord () {
     secretWord = words[Math.round((Math.random() * (words.length)))];
@@ -68,6 +73,10 @@ function makeArray () {
     secretArray = Array.from(secretWord);
     console.log(secretArray);
 
+}
+
+function guessDisplay() {
+    document.getElementById("guessLeft").textContent = (guesses);
 }
 
 function wordDivs() {
@@ -87,10 +96,25 @@ function wordDivs() {
     }
     guesses = 12;
     win = 0;
+    guessDisplay()
     ++rowNumber;
     console.log("Next row: " + rowNumber);
 }
 
+function clearChildren(a) {
+  while (a.hasChildNodes()) {
+    a.removeChild(a.firstChild);
+  }
+}
+
+function scoreChange(a) {
+    if(a === 0) {
+        score = 0
+    }
+    if(a > 0) {
+        score = score + a
+    }
+}
 
 randomWord ();
 makeArray ();
@@ -120,26 +144,39 @@ document.onkeyup = function(guess) {
         else{
         guesses = --guesses;
         console.log(guesses);
+        guessDisplay()
         var newDiv = document.createElement("div");
         newDiv.id = (userGuess + "_guessed");
         newDiv.className = ("guessed");
         newDiv.textContent = (userGuess);
-        document.getElementById("wrongput").appendChild(newDiv);
+        wrongput.appendChild(newDiv);
         }
     }
 
     function winner () {
     if (win === secretArray.length) {
             alert("SHAPES!")
+            scoreChange(win)
             randomWord ();
             makeArray ();
             wordDivs();
+            clearChildren(wrongput);
+        }
     }
-}
-
     winner ()
 
-    
+    function loser () {
+    if (guesses < 1) {
+        alert("LOSER!");
+        scoreChange(0)
+        clearChildren(wrongput);
+        clearChildren(rightput);
+        randomWord ();
+        makeArray ();
+        wordDivs();
+        }
+    }
+    loser ()
 }
 
 
