@@ -20,7 +20,7 @@
                     <div class="col-md-6 blue">
                         <div id="wrongput"></div>
                     </div>
-                    <div class="col-md-6 yellow">
+                    <div class="col-md-6 yellow flexcol">
                         <div id="wordBlanks" class="row"></div>
                     </div>
                </div>
@@ -73,7 +73,7 @@ function makeArray () {
 function wordDivs() {
     var wordRow = document.createElement("div");
     wordRow.id = (rowNumber);
-    wordRow.className = "row";
+    wordRow.className = "row words";
     console.log("Row Number: " + rowNumber);
     document.getElementById("wordBlanks").appendChild(wordRow);
     
@@ -112,13 +112,6 @@ document.onkeyup = function(guess) {
             console.log("Secret Array: " + secretArray.length)    
         }
     }
-    function winner () {
-    if (win === secretArray.length) {
-            alert("SHAPES!")
-            randomWord ();
-            makeArray ();
-            wordDivs();
-    }
     
     else {
         if (document.getElementById(userGuess + "_guessed")) {
@@ -133,6 +126,14 @@ document.onkeyup = function(guess) {
         newDiv.textContent = (userGuess);
         document.getElementById("wrongput").appendChild(newDiv);
         }
+    }
+
+    function winner () {
+    if (win === secretArray.length) {
+            alert("SHAPES!")
+            randomWord ();
+            makeArray ();
+            wordDivs();
     }
 }
 
