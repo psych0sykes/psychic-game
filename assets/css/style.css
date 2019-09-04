@@ -49,3 +49,8 @@ header {
     flex-wrap: wrap;
     
 }
+.score {
+    font-size: 40px;
+    margin-right: 50%;
+    margin-left: 50%;
+}

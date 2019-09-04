@@ -12,7 +12,7 @@
     <div class="row">
         
         <div class="col-md-2">
-            <div id="guessLeft"></div>
+            <div id="guessLeft" class="score"></div>
         </div>
            <div class="col-md-8 blue">
                <header class="row red">
@@ -27,7 +27,9 @@
                     </div>
                </div>
            </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <div id="scoreRight" class="score"></div>
+        </div>
 
     </div>
 </body>
@@ -78,6 +80,9 @@ function makeArray () {
 function guessDisplay() {
     document.getElementById("guessLeft").textContent = (guesses);
 }
+function scoreboard() {
+    document.getElementById("scoreRight").textContent = (score);
+}
 
 function wordDivs() {
     var wordRow = document.createElement("div");
@@ -97,6 +102,7 @@ function wordDivs() {
     guesses = 12;
     win = 0;
     guessDisplay()
+    scoreboard()
     ++rowNumber;
     console.log("Next row: " + rowNumber);
 }
@@ -114,6 +120,7 @@ function scoreChange(a) {
     if(a > 0) {
         score = score + a
     }
+    scoreboard()
 }
 
 randomWord ();
@@ -129,11 +136,14 @@ document.onkeyup = function(guess) {
     if (secretWord.includes(userGuess)) {
         var x = document.getElementsByClassName(userGuess);
         for (var i = 0; i < x.length; i++) {
-            x[i].innerHTML = (userGuess);
-            x[i].className = ("done");
+            x[i].textContent = (userGuess);
             win = ++win;
             console.log(win);
-            console.log("Secret Array: " + secretArray.length)    
+            console.log("Secret Array: " + secretArray.length)
+            console.log(i)  
+        }
+        for (var i = 0; i < x.length; i++) {
+            x[i].className = ("done");  
         }
     }
     
