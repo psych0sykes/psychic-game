@@ -86,10 +86,10 @@ function scoreChange(a) {
     scoreboard()
 }
 function doneClass() {
-   var b = document.getElementsByClassName("ltrdiv")
+   var b = document.getElementsByClassName("Y")
 
    for (var i = 0; i < b.length; i++) {
-       b[i].className = ("done ltrdiv");
+       b[i].className = ("done Y");
    }
 
 }
@@ -105,12 +105,13 @@ document.onkeyup = function(guess) {
         var x = document.getElementsByClassName(userGuess);
         win += x.length;
         console.log("win + " + x.length + " = " + win);
-        var x = document.getElementsByClassName(userGuess);
         for (var i = 0; i < x.length; i++) {
             
             for(i = 0; i < x.length; i++) {
             x[i].textContent = (userGuess);
+            x[i].classList.add("Y")
             }
+            doneClass()
         }
     }
     
